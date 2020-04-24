@@ -1,17 +1,20 @@
+import jdk.swing.interop.SwingInterOpUtils;
+
 import java.util.Random;
+import java.util.Scanner;
 
 class empWageComputationMain {
 
-        public static final int WAGE_PER_HOUR = 20;
-        public static final int FULL_DAY_HOUR = 8;
-        public static final int PART_DAY_HOUR = 4;
-        public static final int MAXIMUM_WORKING_HOURS_A_MONTH = 100;
-        public static final int WORKING_DAYS_A_MONTH = 20;
+        public static int WAGE_PER_HOUR = 20;
+        public static int FULL_DAY_HOUR = 8;
+        public static int PART_DAY_HOUR = 4;
+        public static int MAXIMUM_WORKING_HOURS_A_MONTH = 100;
+        public static int WORKING_DAYS_A_MONTH = 20;
         public static Boolean absent = false;
         public static Boolean present = false;
         public static int employeeType = 0;
         public static Random random = new Random();
-
+        public static Scanner scanner = new Scanner();
         public static void checkAttendance() {
 
             int attendance = random.nextInt(1);
@@ -61,9 +64,21 @@ class empWageComputationMain {
                 System.out.println(wage);
             }
         }
+        public static void computeWageForDifferentCompanies(){
+        System.out.println("Enter the company name");
+        String company_name = scanner.nextLine();
+        System.out.println("Enter the wage per hour");
+        WAGE_PER_HOUR = scanner.nextInt();
+        System.out.println("Enter the number of working days a month");
+        WORKING_DAYS_A_MONTH = scanner.nextInt();
+        System.out.println("Enter the number of working hours per month");
+        MAXIMUM_WORKING_HOURS_A_MONTH = scanner.nextInt();
+    }
 
     public static void main(String[] args) {
         System.out.println("Welcome to EmployeeWageComputationProgram");
+
+        computeWageForDifferentCompanies();
         checkAttendance();
         calculateDailyWage();
         calculateMonthlyWage();
