@@ -7,6 +7,7 @@ class empWageComputationMain {
         int part_day_hour = 4;
         int daily_wage = 0;
         int partTime_wage =0;
+        int employeeType;
         Boolean absent = false;
         Boolean present = false;
         System.out.println("Welcome to EmployeeWageComputationProgram");
@@ -18,9 +19,18 @@ class empWageComputationMain {
             present = true;
         }
         if(present){
-            daily_wage = wage_per_hour * full_day_hour;
-            partTime_wage = wage_per_hour * part_day_hour;
+            employeeType = random.nextInt(1);
+            switch (employeeType) {
+                case 1:
+                    daily_wage = wage_per_hour * full_day_hour;
+                case 2:
+                    partTime_wage = wage_per_hour * part_day_hour;
+            }
         }
+        else {
+            System.out.println("Employee is absent");
+        }
+
 
 
     }
