@@ -4,7 +4,9 @@ class empWageComputationMain {
     public static void main(String[] args) {
         int wage_per_hour = 20;
         int full_day_hour = 8;
+        int part_day_hour = 4;
         int daily_wage = 0;
+        int partTime_wage =0;
         Boolean absent = false;
         Boolean present = false;
         System.out.println("Welcome to EmployeeWageComputationProgram");
@@ -17,6 +19,7 @@ class empWageComputationMain {
         }
         if(present){
             daily_wage = wage_per_hour * full_day_hour;
+            partTime_wage = wage_per_hour * part_day_hour;
         }
 
 
