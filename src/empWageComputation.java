@@ -37,12 +37,9 @@ class empWageComputationMain {
             } else {
                 System.out.println("Employee is absent");
             }
-        }
-        public static void calculateMonthlyWage() {
             int monthly_wage = WAGE_PER_HOUR *FULL_DAY_HOUR * WORKING_DAYS_A_MONTH;
             System.out.println(monthly_wage);
-        }
-        public static void calculateWageUnderCondition() {
+
              int days_worked = 0;
              int hours_worked = 0;
              int wage;
@@ -65,10 +62,7 @@ class empWageComputationMain {
     public static void main(String[] args) {
         System.out.println("Welcome to EmployeeWageComputationProgram");
         checkAttendance();
-        calculateDailyWage();
-        calculateMonthlyWage();
-        calculateWageUnderCondition();
-
+        calculateDailyWage();.
     }
 
 
