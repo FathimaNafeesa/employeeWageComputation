@@ -64,12 +64,5 @@ class empWageComputationMain {
         System.out.println("Welcome to EmployeeWageComputationProgram");
         checkAttendance();
         calculateDailyWage();
-
-
     }
-
-
-
-    }
-
 }
