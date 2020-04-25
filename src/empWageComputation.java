@@ -1,10 +1,11 @@
 import jdk.swing.interop.SwingInterOpUtils;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Random;
 import java.util.Scanner;
 
 class empWageComputation {
-
         public static int WAGE_PER_HOUR = 20;
         public static int FULL_DAY_HOUR = 8;
         public static int PART_DAY_HOUR = 4;
@@ -15,7 +16,9 @@ class empWageComputation {
         public static int employeeType = 0;
         public static Random random = new Random();
         public static Scanner scanner = new Scanner(System.in);
-        public static void checkAttendance(){
+        private static Object String;
+
+    public static void checkAttendance(){
 
             int attendance = random.nextInt(1);
             if (attendance == 1) {
@@ -52,19 +55,16 @@ class empWageComputation {
         public static void calculateWageUnderCondition() {
              int days_worked = 1;
              int hours_worked = 1;
-             int wage;
+             int wage = 0;
 
             while (days_worked < WORKING_DAYS_A_MONTH && hours_worked < MAXIMUM_WORKING_HOURS_A_MONTH) {
                 wage = hours_worked * WAGE_PER_HOUR;
                 hours_worked++;
-                System.out.println(("hours " +hours_worked ));
                 if (hours_worked >= 8 && hours_worked % 8 == 0) {
                     days_worked++;
-                    System.out.println("Day  " + days_worked);
-                    System.out.println("The daily wage  " + wage);
                 }
-                System.out.println(wage);
             }
+            System.out.println("The total wage is until the day " + days_worked + " is " + wage);
         }
         public static void computeWageForDifferentCompanies(){
         System.out.println("Enter the company name");
@@ -78,12 +78,12 @@ class empWageComputation {
     }
 
     public static void main(String[] args) {
-        System.out.println("Welcome to EmployeeWageComputationProgram");
 
+        System.out.println("Welcome to EmployeeWageComputationProgram");/
         computeWageForDifferentCompanies();
         checkAttendance();
-        //calculateDailyWage();
-        //calculateMonthlyWage();
+        calculateDailyWage();
+        calculateMonthlyWage();
         calculateWageUnderCondition();
 
     }
