@@ -1,5 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Dictionary.*;
 
 class empWageComputationMain {
 
@@ -13,17 +14,22 @@ class empWageComputationMain {
         public static int employeeType = 0;
         public static Random random = new Random();
         public static Scanner scanner = new Scanner(System.in);
-        public static void checkAttendance() {
+        public static String companyName;
+        public static int wage_per_hour;
+        public static int working_days_a_month;
+        public static int working_hours_a_month;
+        public static boolean checkAttendance() {
 
             int attendance = random.nextInt(1);
             if (attendance == 1) {
-                absent = true;
+                present = true;
             } else {
                 present = true;
             }
             System.out.println(attendance);
+            return present;
         }
-        public static void calculateWage() {
+        public static void calculateWage(Boolean present) {
 
             int daily_wage = 0;
             if (present) {
@@ -63,22 +69,35 @@ class empWageComputationMain {
             System.out.println("The total wage is " + wage);
             System.out.println("For " + hours_worked + " & " + days_worked);
         }
+        empWageComputationMain(String companyName,int wage_per_hour,int working_days_a_month,int working_hours_a_month) {
+            this.companyName = companyName;
+            this.wage_per_hour = wage_per_hour;
+            this.working_days_a_month = working_days_a_month;
+            this.working_hours_a_month = working_hours_a_month;
 
-    public static void computeWageForDifferentCompanies(){
-        System.out.println("Enter the company name");
-        String company_name = scanner.nextLine();
-        System.out.println("Enter the wage per hour");
-        WAGE_PER_HOUR = scanner.nextInt();
-        System.out.println("Enter the number of working days a month");
-        WORKING_DAYS_A_MONTH = scanner.nextInt();
-        System.out.println("Enter the number of working hours per month");
-        MAXIMUM_WORKING_HOURS_A_MONTH = scanner.nextInt();
+        }
+
+    public void computeWageForDifferentCompanies(){
+        //System.out.println("Enter the company name");
+        companyName = companyName;
+        //System.out.println("Enter the wage per hour");
+        WAGE_PER_HOUR = wage_per_hour;
+        //System.out.println("Enter the number of working days a month");
+        WORKING_DAYS_A_MONTH = working_days_a_month;
+        //System.out.println("Enter the number of working hours per month");
+        MAXIMUM_WORKING_HOURS_A_MONTH = working_hours_a_month;
+        calculateWage(present);
     }
+
     public static void main(String[] args) {
         System.out.println("Welcome to EmployeeWageComputationProgram");
-        computeWageForDifferentCompanies();
+        empWageComputationMain company_1 = new empWageComputationMain("flipkart",20,20,100);
+        empWageComputationMain company_2 = new empWageComputationMain("amazon",50,25,200);
+        empWageComputationMain company_3 = new empWageComputationMain("myntra",30,15,300);
         checkAttendance();
-        calculateWage();
 
+        company_1.computeWageForDifferentCompanies();
+        company_2.computeWageForDifferentCompanies();
+        company_3.computeWageForDifferentCompanies();
     }
 }
