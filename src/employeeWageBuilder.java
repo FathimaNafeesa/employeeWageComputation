@@ -1,8 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Dictionary.*;
 
-class empWageComputationMain {
+class employeeWageBuilder {
 
         public static int WAGE_PER_HOUR = 20;
         public static final int FULL_DAY_HOUR = 8;
@@ -69,7 +68,7 @@ class empWageComputationMain {
             System.out.println("The total wage is " + wage);
             System.out.println("For " + hours_worked + " & " + days_worked);
         }
-        empWageComputationMain(String companyName,int wage_per_hour,int working_days_a_month,int working_hours_a_month) {
+        employeeWageBuilder(String companyName, int wage_per_hour, int working_days_a_month, int working_hours_a_month) {
             this.companyName = companyName;
             this.wage_per_hour = wage_per_hour;
             this.working_days_a_month = working_days_a_month;
@@ -91,9 +90,9 @@ class empWageComputationMain {
 
     public static void main(String[] args) {
         System.out.println("Welcome to EmployeeWageComputationProgram");
-        empWageComputationMain company_1 = new empWageComputationMain("flipkart",20,20,100);
-        empWageComputationMain company_2 = new empWageComputationMain("amazon",50,25,200);
-        empWageComputationMain company_3 = new empWageComputationMain("myntra",30,15,300);
+        employeeWageBuilder company_1 = new employeeWageBuilder("flipkart",20,20,100);
+        employeeWageBuilder company_2 = new employeeWageBuilder("amazon",50,25,200);
+        employeeWageBuilder company_3 = new employeeWageBuilder("myntra",30,15,300);
         checkAttendance();
 
         company_1.computeWageForDifferentCompanies();
