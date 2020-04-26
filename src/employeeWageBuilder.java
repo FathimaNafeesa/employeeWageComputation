@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -91,20 +92,20 @@ class employeeWageBuilder {
     }
     class CompanyEmpWage {
 
-        Object[] companyNamesAndObjects = new Object[2];
+        ArrayList<Object> companyNamesAndObjects = new ArrayList<Object>();
 
         public void setCompanyNamesAndObjects() {
             for (int i = 0; i < 2; i++) {
                 employeeWageBuilder object = new employeeWageBuilder();
                 checkAttendance();
                 object.computeWageForDifferentCompanies();
-                companyNamesAndObjects[i] = new employeeWageBuilder(companyName, WAGE_PER_HOUR, WORKING_DAYS_A_MONTH, MAXIMUM_WORKING_HOURS_A_MONTH);
+                companyNamesAndObjects.add(new employeeWageBuilder(companyName, WAGE_PER_HOUR, WORKING_DAYS_A_MONTH, MAXIMUM_WORKING_HOURS_A_MONTH);
             }
         }
 
         public void getCompanyNamesAndObjects() {
-            for (int i=0;i<companyNamesAndObjects.length;i++){
-                System.out.println(companyNamesAndObjects[i]);
+            for (int i=0;i<companyNamesAndObjects.size();i++){
+                System.out.println(companyNamesAndObjects.get(i));
             }
 
         }
