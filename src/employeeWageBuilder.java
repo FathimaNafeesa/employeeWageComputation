@@ -19,30 +19,33 @@ public class employeeWageBuilder {
         public static int working_hours_a_month;
         public static void checkAttendance() {
 
-            int attendance = random.nextInt(1);
+            int attendance = random.nextInt(2);
             if (attendance == 1) present = true;
             else present = false;
-            System.out.println(attendance);
         }
         public static void calculateWage(Boolean present) {
 
             int daily_wage = 0;
             if (present) {
                 employeeType = random.nextInt(2);
-                System.out.println(employeeType);
                 switch (employeeType) {
                     case 0:
                         daily_wage = WAGE_PER_HOUR * FULL_DAY_HOUR;
+                        System.out.println("The daily wage is " + daily_wage);
                     case 1:
                         daily_wage = WAGE_PER_HOUR * PART_DAY_HOUR;
+                        System.out.println("The daily wage is " + daily_wage);
+                        break;
+                    default:
+                        calculateWage(true);
                 }
-                System.out.println("The daily wage is " + daily_wage);
+
             } else {
                 System.out.println("Employee is absent");
             }
 
             int monthly_wage = WAGE_PER_HOUR * FULL_DAY_HOUR * WORKING_DAYS_A_MONTH;
-            System.out.println(monthly_wage);
+            System.out.println("The monthly wage is " + monthly_wage);
 
             int days_worked = 1;
             int hours_worked = 1;
@@ -54,7 +57,6 @@ public class employeeWageBuilder {
                     hours_worked++;
                     if (hours_worked >= FULL_DAY_HOUR && hours_worked % FULL_DAY_HOUR == 0) {
                         days_worked++;
-                        System.out.println("The daily wage is" + wage);
                     }
                 }
                 System.out.println("The total wage is " + wage);
