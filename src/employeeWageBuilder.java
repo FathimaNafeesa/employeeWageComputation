@@ -10,7 +10,7 @@ public class employeeWageBuilder {
         public static int MAXIMUM_WORKING_HOURS_A_MONTH = 100;
         public static int WORKING_DAYS_A_MONTH = 20;
         public static Boolean present = false;
-        public static int employeeType = 0;
+        public static int employeeType;
         public static Random random = new Random();
         public static Scanner scanner = new Scanner(System.in);
         public static String  companyName;
@@ -34,7 +34,7 @@ public class employeeWageBuilder {
                         System.out.println("The daily wage is " + daily_wage);
                     case 1:
                         daily_wage = WAGE_PER_HOUR * PART_DAY_HOUR;
-                        System.out.println("The daily wage is " + daily_wage);
+                        System.out.println("The daily wage is " + daily_w2age);
                         break;
                     default:
                         calculateWage(true);
@@ -113,7 +113,7 @@ public class employeeWageBuilder {
         int Number_of_companies;
         System.out.println("Enter the number of companies");
         Number_of_companies = scanner.nextInt();
-        for(int i = 0;i <= Number_of_companies;i++){
+        for(int i = 0;i < Number_of_companies;i++){
             objectForCompanyEmpWage.setCompanyNamesAndObjects();
         }
 
