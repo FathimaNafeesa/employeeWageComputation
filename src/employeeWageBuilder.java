@@ -34,7 +34,7 @@ public class employeeWageBuilder {
                         System.out.println("The daily wage is " + daily_wage);
                     case 1:
                         daily_wage = WAGE_PER_HOUR * PART_DAY_HOUR;
-                        System.out.println("The daily wage is " + daily_w2age);
+                        System.out.println("The daily wage is " + daily_wage);
                         break;
                     default:
                         calculateWage(true);
