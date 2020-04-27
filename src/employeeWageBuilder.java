@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-class employeeWageBuilder {
+public class employeeWageBuilder {
 
         public static int WAGE_PER_HOUR = 20;
         public static final int FULL_DAY_HOUR = 8;
@@ -99,7 +99,7 @@ class employeeWageBuilder {
                 employeeWageBuilder object = new employeeWageBuilder();
                 checkAttendance();
                 object.computeWageForDifferentCompanies();
-                companyNamesAndObjects.add(new employeeWageBuilder(companyName, WAGE_PER_HOUR, WORKING_DAYS_A_MONTH, MAXIMUM_WORKING_HOURS_A_MONTH);
+                companyNamesAndObjects.add(new employeeWageBuilder(companyName, WAGE_PER_HOUR, WORKING_DAYS_A_MONTH, MAXIMUM_WORKING_HOURS_A_MONTH));
             }
         }
 
