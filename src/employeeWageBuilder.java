@@ -20,11 +20,8 @@ public class employeeWageBuilder {
         public static void checkAttendance() {
 
             int attendance = random.nextInt(1);
-            if (attendance == 1) {
-                present = true;
-            } else {
-                present = false;
-            }
+            if (attendance == 1) present = true;
+            else present = false;
             System.out.println(attendance);
         }
         public static void calculateWage(Boolean present) {
@@ -64,10 +61,10 @@ public class employeeWageBuilder {
             }
         }
         employeeWageBuilder(String companyName,int wage_per_hour, int working_days_a_month, int working_hours_a_month) {
-            this.companyName = companyName;
-            this.wage_per_hour = wage_per_hour;
-            this.working_days_a_month = working_days_a_month;
-            this.working_hours_a_month = working_hours_a_month;
+            employeeWageBuilder.companyName = companyName;
+            employeeWageBuilder.wage_per_hour = wage_per_hour;
+            employeeWageBuilder.working_days_a_month = working_days_a_month;
+            employeeWageBuilder.working_hours_a_month = working_hours_a_month;
 
         }
         employeeWageBuilder(){
@@ -112,6 +109,7 @@ public class employeeWageBuilder {
         employeeWageBuilder objectForEmpWageBuilder = new employeeWageBuilder();
         employeeWageBuilder.CompanyEmpWage objectForCompanyEmpWage = objectForEmpWageBuilder.new CompanyEmpWage();
         int Number_of_companies;
+        System.out.println("Enter the number of companies");
         Number_of_companies = scanner.nextInt();
         for(int i = 0;i <= Number_of_companies;i++){
             objectForCompanyEmpWage.setCompanyNamesAndObjects();
