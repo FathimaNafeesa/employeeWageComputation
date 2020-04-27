@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-class employeeWageBuilder {
+public class employeeWageBuilder {
 
         public static int WAGE_PER_HOUR = 20;
         public static final int FULL_DAY_HOUR = 8;
@@ -20,55 +20,58 @@ class employeeWageBuilder {
         public static void checkAttendance() {
 
             int attendance = random.nextInt(1);
-            present = attendance == 1;
+            if (attendance == 1) {
+                present = true;
+            } else {
+                present = false;
+            }
             System.out.println(attendance);
         }
         public static void calculateWage(Boolean present) {
 
-            int daily_wage_fullTime = 0;
-            int daily_wage_partTime = 0;
+            int daily_wage = 0;
             if (present) {
                 employeeType = random.nextInt(2);
                 System.out.println(employeeType);
                 switch (employeeType) {
                     case 0:
-                        daily_wage_fullTime = WAGE_PER_HOUR * FULL_DAY_HOUR;
+                        daily_wage = WAGE_PER_HOUR * FULL_DAY_HOUR;
                     case 1:
-                        daily_wage_partTime = WAGE_PER_HOUR * PART_DAY_HOUR;
+                        daily_wage = WAGE_PER_HOUR * PART_DAY_HOUR;
                 }
-                System.out.println( "The daily wage is " + daily_wage_fullTime);
-                System.out.println( "The daily wage is " + daily_wage_partTime);
+                System.out.println("The daily wage is " + daily_wage);
             } else {
                 System.out.println("Employee is absent");
             }
 
-            int monthly_wage = WAGE_PER_HOUR *FULL_DAY_HOUR * WORKING_DAYS_A_MONTH;
+            int monthly_wage = WAGE_PER_HOUR * FULL_DAY_HOUR * WORKING_DAYS_A_MONTH;
             System.out.println(monthly_wage);
 
-             int days_worked = 1;
-             int hours_worked = 1;
-             int wage = 0;
+            int days_worked = 1;
+            int hours_worked = 1;
+            int wage = 0;
+            if (present) {
+                while (days_worked <= WORKING_DAYS_A_MONTH && hours_worked <= MAXIMUM_WORKING_HOURS_A_MONTH) {
 
-            while (days_worked <= WORKING_DAYS_A_MONTH && hours_worked <= MAXIMUM_WORKING_HOURS_A_MONTH) {
-
-                wage = hours_worked * WAGE_PER_HOUR;
-                hours_worked++;
-                if (hours_worked >= FULL_DAY_HOUR && hours_worked % FULL_DAY_HOUR == 0) {
-                    days_worked++;
-                    System.out.println("The daily wage is" + wage);
+                    wage = hours_worked * WAGE_PER_HOUR;
+                    hours_worked++;
+                    if (hours_worked >= FULL_DAY_HOUR && hours_worked % FULL_DAY_HOUR == 0) {
+                        days_worked++;
+                        System.out.println("The daily wage is" + wage);
+                    }
                 }
+                System.out.println("The total wage is " + wage);
             }
-            System.out.println("The total wage is " + wage);
         }
-        employeeWageBuilder(String companyName, int wage_per_hour, int working_days_a_month, int working_hours_a_month) {
-            employeeWageBuilder.companyName = companyName;
-            employeeWageBuilder.wage_per_hour = wage_per_hour;
-            employeeWageBuilder.working_days_a_month = working_days_a_month;
-            employeeWageBuilder.working_hours_a_month = working_hours_a_month;
+        employeeWageBuilder(String companyName,int wage_per_hour, int working_days_a_month, int working_hours_a_month) {
+            this.companyName = companyName;
+            this.wage_per_hour = wage_per_hour;
+            this.working_days_a_month = working_days_a_month;
+            this.working_hours_a_month = working_hours_a_month;
 
         }
-
         employeeWageBuilder(){
+
         }
 
 
@@ -85,15 +88,15 @@ class employeeWageBuilder {
     }
     class CompanyEmpWage {
 
-        ArrayList<Object> companyNamesAndObjects = new ArrayList<>();
+        ArrayList<Object> companyNamesAndObjects = new ArrayList<Object>();
 
         public void setCompanyNamesAndObjects() {
-            for (int i = 0; i < 2; i++) {
+
                 employeeWageBuilder object = new employeeWageBuilder();
                 checkAttendance();
                 object.computeWageForDifferentCompanies();
                 companyNamesAndObjects.add(new employeeWageBuilder(companyName, WAGE_PER_HOUR, WORKING_DAYS_A_MONTH, MAXIMUM_WORKING_HOURS_A_MONTH));
-            }
+
         }
 
         public void getCompanyNamesAndObjects() {
@@ -104,11 +107,16 @@ class employeeWageBuilder {
         }
     }
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         System.out.println("Welcome to EmployeeWageComputationProgram");
         employeeWageBuilder objectForEmpWageBuilder = new employeeWageBuilder();
-        employeeWageBuilder.CompanyEmpWage objectForCompanyEmpWage = new CompanyEmpWage();
-        objectForCompanyEmpWage.setCompanyNamesAndObjects();
+        employeeWageBuilder.CompanyEmpWage objectForCompanyEmpWage = objectForEmpWageBuilder.new CompanyEmpWage();
+        int Number_of_companies;
+        Number_of_companies = scanner.nextInt();
+        for(int i = 0;i <= Number_of_companies;i++){
+            objectForCompanyEmpWage.setCompanyNamesAndObjects();
+        }
+
         objectForCompanyEmpWage.getCompanyNamesAndObjects();
     }
 }
