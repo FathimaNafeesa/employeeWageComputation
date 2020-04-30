@@ -4,28 +4,31 @@ import java.util.Scanner;
 
 public class employeeWageBuilder {
 
-        public static int WAGE_PER_HOUR = 20;
+        public  int WAGE_PER_HOUR;
         public static final int FULL_DAY_HOUR = 8;
         public static final int PART_DAY_HOUR = 4;
-        public static int MAXIMUM_WORKING_HOURS_A_MONTH = 100;
-        public static int WORKING_DAYS_A_MONTH = 20;
+        public int MAXIMUM_WORKING_HOURS_A_MONTH;
+        public int WORKING_DAYS_A_MONTH;
         public static Boolean present = false;
         public static int employeeType;
         public static Random random = new Random();
         public static Scanner scanner = new Scanner(System.in);
-        public static String  companyName;
-        public static int wage_per_hour;
-        public static int working_days_a_month;
-        public static int working_hours_a_month;
+        public String  companyName;
+        public int daily_wage = 0;
+        public int monthly_wage = 0;
+        public int wage = 0;
+
+        public static ArrayList<employeeWageBuilder> companyNamesAndObjects = new ArrayList<employeeWageBuilder>();
         public static void checkAttendance() {
 
             int attendance = random.nextInt(2);
             if (attendance == 1) present = true;
             else present = false;
         }
-        public static void calculateWage(Boolean present) {
 
-            int daily_wage = 0;
+        public  void calculateWage(Boolean present) {
+            System.out.println(companyName);
+
             if (present) {
                 employeeType = random.nextInt(2);
                 switch (employeeType) {
@@ -44,12 +47,12 @@ public class employeeWageBuilder {
                 System.out.println("Employee is absent");
             }
 
-            int monthly_wage = WAGE_PER_HOUR * FULL_DAY_HOUR * WORKING_DAYS_A_MONTH;
+            monthly_wage = WAGE_PER_HOUR * FULL_DAY_HOUR * WORKING_DAYS_A_MONTH;
             System.out.println("The monthly wage is " + monthly_wage);
 
             int days_worked = 1;
             int hours_worked = 1;
-            int wage = 0;
+
             if (present) {
                 while (days_worked <= WORKING_DAYS_A_MONTH && hours_worked <= MAXIMUM_WORKING_HOURS_A_MONTH) {
 
@@ -62,61 +65,47 @@ public class employeeWageBuilder {
                 System.out.println("The total wage is " + wage);
             }
         }
+        public void printWages() {
+            System.out.println(companyName);
+            System.out.println(daily_wage);
+            System.out.println(monthly_wage);
+            System.out.println(wage);
+        }
         employeeWageBuilder(String companyName,int wage_per_hour, int working_days_a_month, int working_hours_a_month) {
-            employeeWageBuilder.companyName = companyName;
-            employeeWageBuilder.wage_per_hour = wage_per_hour;
-            employeeWageBuilder.working_days_a_month = working_days_a_month;
-            employeeWageBuilder.working_hours_a_month = working_hours_a_month;
+            this.companyName = companyName;
+            this.WAGE_PER_HOUR = wage_per_hour;
+            this.WORKING_DAYS_A_MONTH = working_days_a_month;
+            this.MAXIMUM_WORKING_HOURS_A_MONTH= working_hours_a_month;
 
         }
-        employeeWageBuilder(){
-
-        }
-
-
-    public void computeWageForDifferentCompanies(){
-        System.out.println("Enter the company name");
-        companyName = scanner.nextLine();
-        System.out.println("Enter the wage per hour");
-        WAGE_PER_HOUR = scanner.nextInt();
-        System.out.println("Enter the number of working days a month");
-        WORKING_DAYS_A_MONTH = scanner.nextInt();
-        System.out.println("Enter the number of working hours per month");
-        MAXIMUM_WORKING_HOURS_A_MONTH = scanner.nextInt();
-        calculateWage(present);
-    }
-    class CompanyEmpWage {
-
-        ArrayList<Object> companyNamesAndObjects = new ArrayList<Object>();
-
-        public void setCompanyNamesAndObjects() {
-
-                employeeWageBuilder object = new employeeWageBuilder();
-                checkAttendance();
-                object.computeWageForDifferentCompanies();
-                companyNamesAndObjects.add(new employeeWageBuilder(companyName, WAGE_PER_HOUR, WORKING_DAYS_A_MONTH, MAXIMUM_WORKING_HOURS_A_MONTH));
-
-        }
-
-        public void getCompanyNamesAndObjects() {
-            for (Object companyNamesAndObject : companyNamesAndObjects) {
-                System.out.println(companyNamesAndObject);
+   
+    static class CompanyEmpWage {
+        public static void getCalculateWages() {
+            for (employeeWageBuilder companyWage:companyNamesAndObjects)
+            {
+             companyWage.calculateWage(present) ;
             }
-
         }
+        public static void printCalculatedWages(String company_name){
+            for (employeeWageBuilder companyWage:companyNamesAndObjects)
+            {
+                if( company_name.equals(companyWage.companyName)) {
+                  companyWage.printWages();
+                }
+            }
+        }
+
     }
+
 
     public static void main(String[] args) {
         System.out.println("Welcome to EmployeeWageComputationProgram");
-        employeeWageBuilder objectForEmpWageBuilder = new employeeWageBuilder();
-        employeeWageBuilder.CompanyEmpWage objectForCompanyEmpWage = objectForEmpWageBuilder.new CompanyEmpWage();
-        int Number_of_companies;
-        System.out.println("Enter the number of companies");
-        Number_of_companies = scanner.nextInt();
-        for(int i = 0;i < Number_of_companies;i++){
-            objectForCompanyEmpWage.setCompanyNamesAndObjects();
-        }
+        companyNamesAndObjects.add(0,new employeeWageBuilder("flipkart",20, 20, 100));
+        companyNamesAndObjects.add(1,new employeeWageBuilder("amazon",22, 30, 90));
+        companyNamesAndObjects.add(2,new employeeWageBuilder("netflix",23, 25, 120));
+        checkAttendance();
+        CompanyEmpWage.getCalculateWages();
+        CompanyEmpWage.printCalculatedWages("flipkart");
 
-        objectForCompanyEmpWage.getCompanyNamesAndObjects();
     }
 }
